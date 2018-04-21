@@ -1,9 +1,17 @@
 import cv2
 import numpy as np
 import sys
+import tkinter as tk
+from tkinter import filedialog
 
 image_hsv = None
 pixel = (0,0,0) #RANDOM DEFAULT VALUE
+
+ftypes = [
+    ('JPG', '*.jpg;*.JPG;*.JPEG'), 
+    ('PNG', '*.png;*.PNG'),
+    ('GIF', '*.gif;*.GIF'),
+]
 
 def pick_color(event,x,y,flags,param):
     if event == cv2.EVENT_LBUTTONDOWN:
@@ -22,8 +30,11 @@ def main():
 
     global image_hsv, pixel
 
-    #READING THE IMAGE
-    image_src = cv2.imread('Capture.PNG')
+    #OPEN DIALOG FOR READING THE IMAGE FILE
+    root = tk.Tk()
+    root.withdraw() #HIDE THE TKINTER GUI
+    file_path = filedialog.askopenfilename(filetypes = ftypes)
+    image_src = cv2.imread(file_path)
     cv2.imshow("BGR",image_src)
 
     #CREATE THE HSV FROM THE BGR IMAGE
