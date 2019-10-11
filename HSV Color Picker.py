@@ -8,9 +8,10 @@ image_hsv = None
 pixel = (0,0,0) #RANDOM DEFAULT VALUE
 
 ftypes = [
-    ('JPG', '*.jpg;*.JPG;*.JPEG'), 
-    ('PNG', '*.png;*.PNG'),
-    ('GIF', '*.gif;*.GIF'),
+    ("JPG", "*.jpg;*.JPG;*.JPEG"), 
+    ("PNG", "*.png;*.PNG"),
+    ("GIF", "*.gif;*.GIF"),
+    ("All files", "*.*")
 ]
 
 def pick_color(event,x,y,flags,param):
@@ -34,6 +35,7 @@ def main():
     root = tk.Tk()
     root.withdraw() #HIDE THE TKINTER GUI
     file_path = filedialog.askopenfilename(filetypes = ftypes)
+    root.update()
     image_src = cv2.imread(file_path)
     cv2.imshow("BGR",image_src)
 
